@@ -1,8 +1,5 @@
-const options = ["rock", "paper", "scissors"];
-
 function getComputerChoice() {
-  const choice = options[Math.floor(Math.random() * options.length)];
-  console.log(choice);
+  const choices = ["rock", "paper", "scissors"];
+  return choices[Math.floor(Math.random() * choices.length)];
 }
-
-getComputerChoice();
+console.log(getComputerChoice());
