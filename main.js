@@ -1,7 +1,7 @@
-const choices = ["rock", "paper", "scissors"];
-
 function getComputerChoice() {
-  return choices[Math.floor(Math.random() * choices.length)];
+  const options = ["rock", "paper", "scissors"];
+  const choice = options[Math.floor(Math.random() * options.length)];
+  return choice;
 }
 
 function checkWinner(playerSelection, computerSelection) {
@@ -28,6 +28,14 @@ function playRound(playerSelection, computerSelection) {
     return `Sorry, you lose ${computerSelection} beats ${playerSelection}`;
   }
 }
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = "rock";
+    const computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+  }
+}
+game();
+game();
