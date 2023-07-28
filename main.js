@@ -1,41 +1,55 @@
-function getComputerChoice() {
-  const options = ["rock", "paper", "scissors"];
-  const choice = options[Math.floor(Math.random() * options.length)];
-  return choice;
+
+ let playerScore = 0;
+ let computerScore = 0;
+  
+
+ function getComputerChoice() {
+  let options = ['rock', 'paper', 'scissors'];
+  let randomNumber = Math.floor(Math.random() * options.length);
+  return options[randomNumber];
 }
 
-function checkWinner(playerSelection, computerSelection) {
-  if (playerSelection == computerSelection) {
-    return "Tie";
-  } else if (
-    (playerSelection == "scissors" && computerSelection == "paper") ||
-    (playerSelection == "paper" && computerSelection == "rock") ||
-    (playerSelection == "rock" && computerSelection == "paper")
-  ) {
-    return "Player";
-  } else {
-    return "Computer";
-  }
+function getPlayerChoice() {
+  let playerChoice = prompt("Choose a weapon");
+  return playerChoice.toLowerCase();
 }
 
-function playRound(playerSelection, computerSelection) {
-  const result = checkWinner(playerSelection, computerSelection);
-  if (result == "Tie") {
-    return "It's a Tie!";
-  } else if (result == "Player") {
-    return `You win! ${playerSelection} beats ${computerSelection}`;
-  } else {
-    return `Sorry, you lose ${computerSelection} beats ${playerSelection}`;
-  }
-}
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = "rock";
-    const computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
+     
+function playRound(playerSelection, computerSelection) { 
+  switch (playerSelection + computerSelection) {
+    case 'rockscissors':
+    case 'paperrock':
+    case 'scissorspaper':
+      playerScore++
+      return `You win this round. Your score: ${playerScore} Computer score: ${computerScore}`;
+      break
+    case 'scissorsrock':
+    case 'rockpaper':
+    case 'paperscissors':
+      computerScore++
+      return `Computer wins this round. Your score: ${playerScore} Computer score: ${computerScore}`;
+      break 
+    case 'scissorsscissors':
+    case 'paperpaper':
+    case 'rockrock':
+     return `It's a draw. You both picked ${playerSelection}. Your score: ${playerScore} Computer score: ${computerScore}`
+     break    
   }
 }
-game();
+   
+
+
+function game(){
+    for (let  i = 0; i < 5;  i++) {
+     playerSelection = getPlayerChoice();
+     computerSelection = getComputerChoice();
+     console.log(playRound(playerSelection, computerSelection));
+    }
+     if (playerScore > computerScore){
+       console.log('You win! GAME OVER');
+     } else if (computerScore > playRound) {
+      console.log('You lose. GAME OVER');
+     } else console.log('We have a tie. GAME OVER');
+  }
 game();
